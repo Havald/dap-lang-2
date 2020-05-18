@@ -1,0 +1,1 @@
+PointArray CalculateHull(const PointArray &AllPoints);
