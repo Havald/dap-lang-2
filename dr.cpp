@@ -1,47 +1,29 @@
 #include "Triangle.cpp"
 
-double randomNumber() {
-	return ((double) rand() / (RAND_MAX));	
-}
 
 int main(int argc, char *argv[]) {
-	double x1, x2, x3, y1, y2, y3;
+	double coordinates[6];
 	try{
 		if(argc != 1 && argc != 7) { 
 			throw "Usage: dr [ x1 y1 x2 y2 x3 y3 ]";
 		}else if(argc == 7) {
-			if (!(istringstream(argv[1]) >> dec >> x1)){
-				throw "First Parameter x1 must be double.";
-			} 
-			if (!(istringstream(argv[2]) >> dec >> y1)){
-				throw "Second Parameter y1 must be double.";
-			} 
-			if (!(istringstream(argv[3]) >> dec >> x2)){
-				throw "Third Parameter x2 must be double.";
-			} 
-			if (!(istringstream(argv[4]) >> dec >> y2)){
-				throw "Fourth Parameter y2 must be double.";
-			} 
-			if (!(istringstream(argv[5]) >> dec >> x3)){
-				throw "Fifth Parameter x3 must be double.";
-			} 
-			if (!(istringstream(argv[6]) >> dec >> y3)){
-				throw "Last Parameter y3 must be double.";
-			} 
-			
+			for(unsigned int i = 1; i < (unsigned int)argc; i++) {
+				if (!(istringstream(argv[i]) >> dec >> coordinates[i - 1])){
+					throw "All Parameters must be of type double. \n Usage: dr [ x1 y1 x2 y2 x3 y3 ]";
+				} 
+			}
 		} else {
-			
-	srand(time(nullptr));
-			x1 = randomNumber();
-			y1 = randomNumber();
-			x2 = randomNumber();
-			y2 = randomNumber();
-			x3 = randomNumber();
-			y3 = randomNumber();
+			srand(time(nullptr));
+			for(unsigned int i = 0; i < 6; i++) {
+				coordinates[i] = ((double) rand() / (RAND_MAX));
+			}
 		}
-		PointArray PA = PointArray{Point{x1,y1},Point{x2,y2},Point{x2,y3}};
-		Triangle TheTriangle(Simplex(PointArray{Point{x1,y1},Point{x2,y2},Point{x2,y3}}));
-		cout << setprecision(2) << TheTriangle << endl;
+		
+		Triangle TheTriangle(Simplex(PointArray{Point{coordinates[0], coordinates[1]},
+												Point{coordinates[2], coordinates[3]},
+												Point{coordinates[4], coordinates[5]}}));
+												
+		cout <<setiosflags(ios::fixed) << setprecision(2) << TheTriangle << endl;
 	} catch (const char *Reason) {
 		cerr << Reason << endl; // Handle Exception
 		exit(1);
