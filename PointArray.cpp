@@ -7,6 +7,7 @@ public:
 	using vector<Point>::operator[];
 	using vector<Point>::at;
 
+
 	PointArray(initializer_list<Point> args) {	
 			for(auto iter = args.begin(); iter != args.end(); ++iter) 
 			push_back(*iter);
@@ -20,7 +21,7 @@ public:
 		try {
 			vector::push_back(p);
 		} catch(...) {
-			throw "Ran out of Memory while trying to add the point";
+			throw "Memory allocation failed while trying to add the point";
 		}
 	}
 	
