@@ -7,14 +7,14 @@ int main(int argc, char *argv[]) {
 		if(argc != 1 && argc != 7) { 
 			throw "Usage: dr [ x1 y1 x2 y2 x3 y3 ]";
 		}else if(argc == 7) {
-			for(unsigned int i = 1; i < (unsigned int)argc; i++) {
+			for(size_t i = 1; i < (size_t)argc; i++) {
 				if (!(istringstream(argv[i]) >> dec >> coordinates[i - 1])){
 					throw "All Parameters must be of type double. \n Usage: dr [ x1 y1 x2 y2 x3 y3 ]";
 				} 
 			}
 		} else {
 			srand(time(nullptr));
-			for(unsigned int i = 0; i < 6; i++) {
+			for(size_t i = 0; i < 6; i++) {
 				coordinates[i] = ((double) rand() / (RAND_MAX));
 			}
 		}

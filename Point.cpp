@@ -15,7 +15,7 @@ using namespace std;
 
 class Point : public vector<double> {
 private:
-	unsigned int dimension;
+	size_t dimension;
 public:
 	Point(initializer_list<double> args) {
 		dimension = args.size();
@@ -35,7 +35,7 @@ public:
 			throw "Ungleiche Dimension";
 		}
 		double distance = 0;
-		for(unsigned int i = 0; i < dimension; i++) {
+		for(size_t i = 0; i < dimension; i++) {
 			distance += (Other[i] - this->at(i)) * (Other[i] - this->at(i));
 		}
 		return sqrt(distance);
@@ -43,7 +43,7 @@ public:
 	
 	friend ostream& operator<<(ostream &TheOstream, Point &me) {
 		TheOstream << "(";
-		for(unsigned int i = 0; i < me.getDimension(); i++) {
+		for(size_t i = 0; i < me.getDimension(); i++) {
 			TheOstream << me.at(i); 
 			(i < me.getDimension() - 1) ? TheOstream << ", " : TheOstream << ")" ;
 		}

@@ -2,7 +2,7 @@
 
 
 PointArray CalculateHull(const PointArray &AllPoints) { // Nach JarvisMarch
-	unsigned int i;
+	size_t i;
 	// bool allPointsCollinear = false;
 	PointArray hullPoints = PointArray{};
 	Point pointOnHull = AllPoints[0];
@@ -15,14 +15,14 @@ PointArray CalculateHull(const PointArray &AllPoints) { // Nach JarvisMarch
 	i = 0;
 	Point endPoint = Point{};
 	do {
-		for(unsigned int k = 0; k < hullPoints.size(); k++) {
+		for(size_t k = 0; k < hullPoints.size(); k++) {
 			if(hullPoints[k] == pointOnHull) {
 				return hullPoints;
 			}
 		}
 		hullPoints.push_back(pointOnHull);
 		endPoint = AllPoints[0];
-		for(unsigned int j = 0; j < AllPoints.size(); j++) {
+		for(size_t j = 0; j < AllPoints.size(); j++) {
 			Line templinePQ(hullPoints[i], endPoint);
 			if((endPoint == pointOnHull) || templinePQ.PointLeft(AllPoints[j])) {
 				endPoint = AllPoints[j];
@@ -41,12 +41,12 @@ PointArray CalculateHull(const PointArray &AllPoints) { // Nach JarvisMarch
 	
 	// PointArray hullPoints = PointArray{};
 	// bool valid;
-	// for(unsigned int p = 0; p < AllPoints.size(); p++) {
-		// for(unsigned int q = 1; q < AllPoints.size(); q++) {
+	// for(size_t p = 0; p < AllPoints.size(); p++) {
+		// for(size_t q = 1; q < AllPoints.size(); q++) {
 			// if(q != p) {
 				// valid = true;
 				// Line templinePQ(AllPoints[p], AllPoints[q]);
-				// for(unsigned int r = 0; r < AllPoints.size(); r++) {
+				// for(size_t r = 0; r < AllPoints.size(); r++) {
 					// if(r != p && r != q) {
 						// Point tempPointR(AllPoints[r]);
 						// if(templinePQ.PointLeft(tempPointR)) {
@@ -69,7 +69,7 @@ PointArray CalculateHull(const PointArray &AllPoints) { // Nach JarvisMarch
 // }
 
 int main(int argc, char *argv[]) {
-	unsigned int paramAmount;
+	size_t paramAmount;
 	vector<double> coordinates;
 	PointArray allPoints = PointArray{};
 	srand(time(nullptr));
@@ -82,18 +82,18 @@ int main(int argc, char *argv[]) {
 				throw "Parameter n must be positive Integer.";
 			}
 				
-			for(unsigned int i = 0; i < paramAmount; i++) {
+			for(size_t i = 0; i < paramAmount; i++) {
 				allPoints.push_back(Point{((double) (2*rand()) / (RAND_MAX)) - 1, ((double) (2*rand()) / (RAND_MAX)) - 1});
 			}
 		} else if(argc % 2 == 1) {
 			coordinates.resize(argc - 1);
-			for(unsigned int i = 1; i < (unsigned int)argc; i++) {
+			for(size_t i = 1; i < (size_t)argc; i++) {
 				if (!(istringstream(argv[i]) >> dec >> coordinates.at(i - 1))){
 					throw "All Point Coordinates must be of type double. \n Usage: dr [ x1 y1 x2 y2 x3 y3 ]";
 				} 
 			}
 			
-			for(unsigned int i = 0; i < coordinates.size(); i += 2) {
+			for(size_t i = 0; i < coordinates.size(); i += 2) {
 				allPoints.push_back(Point{coordinates.at(i), coordinates.at(i + 1)});
 			}
 		} else {

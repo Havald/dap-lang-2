@@ -15,7 +15,7 @@ public:
 	
 	friend ostream& operator<<(ostream &TheOstream, Triangle &me) {
 		TheOstream << "Triangle {";
-		for(unsigned int i = 0; i < me.size(); i++) {
+		for(size_t i = 0; i < me.size(); i++) {
 			TheOstream << me.at(i);
 			(i < me.size() - 1) ? TheOstream << ", " : TheOstream << "";
 		}
