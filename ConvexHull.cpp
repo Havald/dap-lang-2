@@ -3,7 +3,7 @@
 
 PointArray CalculateHull(const PointArray &AllPoints) { // Nach JarvisMarch
 	size_t i;
-	// bool allPointsCollinear = false;
+	size_t collinCount = 0;
 	PointArray hullPoints = PointArray{};
 	Point pointOnHull = AllPoints[0];
 	
@@ -15,16 +15,14 @@ PointArray CalculateHull(const PointArray &AllPoints) { // Nach JarvisMarch
 	i = 0;
 	Point endPoint = Point{};
 	do {
-		for(size_t k = 0; k < hullPoints.size(); k++) {
-			if(hullPoints[k] == pointOnHull) {
-				return hullPoints;
-			}
-		}
 		hullPoints.push_back(pointOnHull);
+		if(collinCount == AllPoints.size() && i == 1) break;
 		endPoint = AllPoints[0];
 		for(size_t j = 0; j < AllPoints.size(); j++) {
 			Line templinePQ(hullPoints[i], endPoint);
-			if((endPoint == pointOnHull) || templinePQ.PointLeft(AllPoints[j])) {
+			int temp = templinePQ.PointLeft(AllPoints[j]);
+			if(temp == 0 && i == 0) collinCount++;
+			if((endPoint == pointOnHull) || temp == 1) {
 				endPoint = AllPoints[j];
 			}
 		}
@@ -108,7 +106,7 @@ int main(int argc, char *argv[]) {
 			cout << ConvexHull << endl;
 		} else if(ConvexHull.size() == 2) {
 			cout << "All Points are collinear. Start + Endpoint of Line are: " << endl;
-			cout << ConvexHull[0] << ", " << endl << ConvexHull[1] << endl;
+			cout << ConvexHull << endl;
 		} else {
 			cout << "Hull needs at least 2 different points to build." << endl;
 		}

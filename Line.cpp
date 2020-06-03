@@ -1,6 +1,9 @@
 #pragma once
 #include "PointArray.cpp"
 
+#define ACC 1e-9
+// #define SGN(x) ((x)<−ACC ? −1 :(x)>ACC ? 1 : 0 )
+#define SGN(x) ((x)< -ACC ? -1 : (x) > ACC ? 1 : 0)
 class Line : private PointArray {
 public:
 	using PointArray::operator[];
@@ -22,12 +25,12 @@ public:
 		return d <= 0.0;
 	}
 	
-	bool PointLeft(const Point &To) { // Berechnet, ob ein Punkt Links von der gerichteten Linie P1->P2 liegt (ähnlich ThisPointLeftOfMe, dort allerdings links von P2->P1).  
+	int PointLeft(const Point &To) { // Berechnet, ob ein Punkt Links von der gerichteten Linie P1->P2 liegt (ähnlich ThisPointLeftOfMe, dort allerdings links von P2->P1).  
 	
 		double value = ((*this)[0][1] - (*this)[1][1]) * To[0] + 	// Die Berechnung erfolgt über den Umlaufsinn, den das Dreieck aus der Linie und dem Punkt To hat.
 					((*this)[1][0] - (*this)[0][0]) * To[1] + 		// Wenn Value Positiv ist, wird das Dreieck mathematisch positiv durchlaufen, To liegt also links.
 					((*this)[0][0]*(*this)[1][1]-(*this)[1][0]*(*this)[0][1]); // Ist Value 0, sind sie kollinear.
 					
-		return value > 1e-9; // Hier wird nicht größer 0 ueberprueft, da die double ungenau sind. Bei Kollinearität würde also zufällig true oder false zurueckgegeben.
+		return SGN(value); // Die Überprüfung findet mit einer Bestimmten genauigkeit statt, um die Ungenauigkeit von doubles auszugleichen. 
 	}
 }; 
