@@ -14,7 +14,7 @@ public:
 	void push_back(Point p) {
 		if(this->size() > 0) {
 			if(this->at(0).getDimension() != p.getDimension()) {
-				throw "Cannot add point: wrong dimension";
+				throw "Cannot add point to Array: wrong dimension";
 			} 
 		}
 		try {
@@ -28,6 +28,7 @@ public:
 		for(unsigned int i = 0; i < me.size(); i++) {
 			TheOstream << me.at(i);
 			(i < me.size() - 1) ? TheOstream << ", " : TheOstream << "";
+			TheOstream << endl;
 		}
 		return TheOstream;
 	}

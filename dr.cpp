@@ -18,12 +18,11 @@ int main(int argc, char *argv[]) {
 				coordinates[i] = ((double) rand() / (RAND_MAX));
 			}
 		}
-		
 		Triangle TheTriangle(Simplex(PointArray{Point{coordinates[0], coordinates[1]},
 												Point{coordinates[2], coordinates[3]},
 												Point{coordinates[4], coordinates[5]}}));
 												
-		cout <<setiosflags(ios::fixed) << setprecision(2) << TheTriangle << endl;
+		cout <<setiosflags(ios::fixed) << setprecision(2) << TheTriangle << endl << distance << endl;
 	} catch (const char *Reason) {
 		cerr << Reason << endl; // Handle Exception
 		exit(1);

@@ -49,4 +49,8 @@ public:
 		}
 		return TheOstream;
 	}
+	
+	friend double operator- (Point &a, Point &b) {
+		return a.EuclidDistanceTo(b);
+	}
 };
