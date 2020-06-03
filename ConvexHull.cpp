@@ -38,6 +38,7 @@ PointArray CalculateHull2(const PointArray &AllPoints) {
 			Line templinePQ(hullPoints[i], endPoint);
 			// cout << "Durchlauf " << j << ": " << testpoint << endl;
 			// cout << "Line from " << hullPoints[i] << " to " << endPoint << " isLeft? returns: " << templinePQ.PointLeft(AllPoints[j]) << endl << endl;
+			// templinePQ.ThisfPointLeftOfMe(AllPoints[j]);
 			if((endPoint == pointOnHull) || templinePQ.PointLeft(AllPoints[j])) {
 				
 				// cout << pointOnHull << ", " << endPoint << ", " << testpoint << endl;

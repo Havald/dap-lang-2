@@ -18,7 +18,8 @@ public:
 		double ax = S1[0] - S0[0];
 		double ay = S1[1] - S0[1]; 
 		double d = ay*S0[0] - ax*S0[1];
-		return d <= 0.0;
+		// cout << "TPLOMm: " << d << (d > 0.000000001 ? " true" : " false") << endl;
+		return d > 0.000000001;
 	}
 	bool PointLeft(const Point &To) {
 		// triangle_ABC= (A.y-B.y)*C.x + (B.x-A.x)*C.y + (A.x*B.y-B.x*A.y)
@@ -26,7 +27,7 @@ public:
 		double value = ((*this)[0][1] - (*this)[1][1]) * To[0] + 
 					((*this)[1][0] - (*this)[0][0]) * To[1] +
 					((*this)[0][0]*(*this)[1][1]-(*this)[1][0]*(*this)[0][1]);
-					// cout << value << endl;
+					// cout << "PL: " << value << (value > 0.00000001 ? " true" : " false") <<endl << endl;
 		return (value > 0.00000001 ? true : false);
 	}
 }; 
