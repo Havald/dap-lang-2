@@ -101,14 +101,12 @@ int main(int argc, char *argv[]) {
 				allPoints.push_back(Point{((double) (2*rand()) / (RAND_MAX)) - 1, ((double) (2*rand()) / (RAND_MAX)) - 1});
 			}
 		} else if(argc % 2 == 1) {
-			cout << "what" << endl;
 			coordinates.resize(argc - 1);
 			for(unsigned int i = 1; i < (unsigned int)argc; i++) {
 				if (!(istringstream(argv[i]) >> dec >> coordinates.at(i - 1))){
 					throw "All Point Coordinates must be of type double. \n Usage: dr [ x1 y1 x2 y2 x3 y3 ]";
 				} 
 			}
-			cout << "the fuck" << endl;
 			
 			for(unsigned int i = 0; i < coordinates.size(); i += 2) {
 				allPoints.push_back(Point{coordinates.at(i), coordinates.at(i + 1)});
@@ -118,11 +116,11 @@ int main(int argc, char *argv[]) {
 		}
 		PointArray ConvexHull = CalculateHull2(allPoints);
 		cout << "Set of " << allPoints.size() << " points is:" << endl;
-		// cout << allPoints << endl << endl;
+		cout << allPoints << endl << endl;
 		
 		if(ConvexHull.size() > 1) {
-		cout << "Convex hull is built clockwise from the following " << ConvexHull.size() << " points:" << endl;
-		cout << ConvexHull << endl;
+			cout << "Convex hull is built clockwise from the following " << ConvexHull.size() << " points:" << endl;
+			cout << ConvexHull << endl;
 		} else {
 			cout << "Hull needs at least 2 points to build." << endl;
 		}
