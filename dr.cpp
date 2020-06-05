@@ -23,10 +23,10 @@ int main(int argc, char *argv[]) {
 												Point{coordinates[4], coordinates[5]}}));
 												
 		cout << setiosflags(ios::fixed) << setprecision(2) << TheTriangle << endl;
+
 	} catch (const char *Reason) {
-		cerr << Reason << endl; // Handle Exception
+		cerr << Reason << endl; 
 		exit(1);
 	}
 	return 0;
 }
-// 0.33,0.62)(0.68,0.57)(0.26,0.85

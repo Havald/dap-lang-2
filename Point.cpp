@@ -30,7 +30,7 @@ public:
 		return dimension;
 	}
 	
-	double EuclidDistanceTo(const Point &Other) {
+	double EuclidDistanceTo(const Point &Other) const {
 		if(dimension != Other.dimension) {
 			throw "Ungleiche Dimension";
 		}
@@ -50,7 +50,7 @@ public:
 		return TheOstream;
 	}
 	
-	friend double operator- (Point &a, Point &b) {
+	friend double operator- (const Point &a, const Point &b) {
 		return a.EuclidDistanceTo(b);
 	}
 };

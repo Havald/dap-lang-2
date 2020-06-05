@@ -16,20 +16,24 @@ PointArray CalculateHull(const PointArray &AllPoints) { // Nach JarvisMarch
 	Point endPoint = Point{};
 	do {
 		hullPoints.push_back(pointOnHull);
-		if(collinCount == AllPoints.size() && i == 1) break;
+		if(collinCount == AllPoints.size()) break; // Abbruch falls alle Punkte eine linie sind
 		endPoint = AllPoints[0];
 		for(size_t j = 0; j < AllPoints.size(); j++) {
 			Line templinePQ(hullPoints[i], endPoint);
-			int temp = templinePQ.PointLeft(AllPoints[j]);
-			if(temp == 0 && i == 0) collinCount++;
-			if((endPoint == pointOnHull) || temp == 1) {
+			int isLeft = templinePQ.PointLeft(AllPoints[j]);
+			if((endPoint == pointOnHull) || isLeft == 1) {
+				cout << isLeft << ":" << AllPoints[j] - hullPoints[0] << ":" << endPoint - hullPoints[0] << endl;
 				endPoint = AllPoints[j];
+			}
+			if(isLeft == 0) { 
+				if(i == 0) collinCount++; // Kollinearität mitzählen, um im seltenen Fall, dass alle Punkte auf einer Linie liegen, abbrechen zu können.
+				if(AllPoints[j] - hullPoints[i] > endPoint - hullPoints[i]) endPoint = AllPoints[j]; // Wenn der kollineare Punkt weiter entfernt ist, aktualisieren.
 			}
 		}
 		i++;
 		
 		pointOnHull = endPoint;
-	} while(endPoint != hullPoints[0]);// && i < AllPoints.size());
+	} while(endPoint != hullPoints[0]);
 	return hullPoints;
 }
 
