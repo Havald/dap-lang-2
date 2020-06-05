@@ -2,8 +2,8 @@
 #include "PointArray.cpp"
 
 #define ACC 1e-9
-// #define SGN(x) ((x)<−ACC ? −1 :(x)>ACC ? 1 : 0 )
-#define SGN(x) ((x)< -ACC ? -1 : (x) > ACC ? 1 : 0)
+#define SGN(x) ((x)< -ACC ? -1 : (x) > ACC ? 1 : 0) // Die Definition SGN gibt das Vorzeichen einer Fließkommazahl mit der Genauigkeit ACC zurück
+
 class Line : private PointArray {
 public:
 	using PointArray::operator[];
