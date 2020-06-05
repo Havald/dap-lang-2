@@ -22,7 +22,7 @@ int main(int argc, char *argv[]) {
 												Point{coordinates[2], coordinates[3]},
 												Point{coordinates[4], coordinates[5]}}));
 												
-		cout <<setiosflags(ios::fixed) << setprecision(2) << TheTriangle << endl << distance << endl;
+		cout << setiosflags(ios::fixed) << setprecision(2) << TheTriangle << endl;
 	} catch (const char *Reason) {
 		cerr << Reason << endl; // Handle Exception
 		exit(1);

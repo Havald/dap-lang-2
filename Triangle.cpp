@@ -19,7 +19,7 @@ public:
 			TheOstream << me.at(i);
 			(i < me.size() - 1) ? TheOstream << ", " : TheOstream << "";
 		}
-	TheOstream << "} has Girth " << me.Girth();
+		TheOstream << "} has Girth " << me.Girth();
 		return TheOstream;
 	}
 };
