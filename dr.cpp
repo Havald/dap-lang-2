@@ -4,15 +4,15 @@
 int main(int argc, char *argv[]) {
 	double coordinates[6];
 	try{
-		if(argc != 1 && argc != 7) { 
+		if(argc != 1 && argc != 7) { //korrekte eingabe?
 			throw "Usage: dr [ x1 y1 x2 y2 x3 y3 ]";
-		}else if(argc == 7) {
+		}else if(argc == 7) { //fall 1: punkte werden übergeben
 			for(size_t i = 1; i < (size_t)argc; i++) {
 				if (!(istringstream(argv[i]) >> dec >> coordinates[i - 1])){
 					throw "All Parameters must be of type double. \n Usage: dr [ x1 y1 x2 y2 x3 y3 ]";
 				} 
 			}
-		} else {
+		} else { //fall 2: punkte werden zufällig erstellt
 			srand(time(nullptr));
 			for(size_t i = 0; i < 6; i++) {
 				coordinates[i] = ((double) rand() / (RAND_MAX));
@@ -22,7 +22,7 @@ int main(int argc, char *argv[]) {
 												Point{coordinates[2], coordinates[3]},
 												Point{coordinates[4], coordinates[5]}}));
 												
-		cout << setiosflags(ios::fixed) << setprecision(2) << TheTriangle << endl;
+		cout << setiosflags(ios::fixed) << setprecision(2) << TheTriangle << endl; //ausgabe der punkte und des umfangs -> ostream in triangle
 
 	} catch (const char *Reason) {
 		cerr << Reason << endl; 

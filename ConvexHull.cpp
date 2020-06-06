@@ -37,39 +37,6 @@ PointArray CalculateHull(const PointArray &AllPoints) { // Nach JarvisMarch
 	return hullPoints;
 }
 
-
-// Das hier ist der Versuch, SimpleConvexHull zu implementieren (funktioniert auch, gibt aber keinen Uhrzeigersinn und Punkte mehrmals zurück.)
-// PointArray CalculateHull(const PointArray &AllPoints) {
-	
-	// PointArray hullPoints = PointArray{};
-	// bool valid;
-	// for(size_t p = 0; p < AllPoints.size(); p++) {
-		// for(size_t q = 1; q < AllPoints.size(); q++) {
-			// if(q != p) {
-				// valid = true;
-				// Line templinePQ(AllPoints[p], AllPoints[q]);
-				// for(size_t r = 0; r < AllPoints.size(); r++) {
-					// if(r != p && r != q) {
-						// Point tempPointR(AllPoints[r]);
-						// if(templinePQ.PointLeft(tempPointR)) {
-							// valid = false;
-						// }
-					// }
-				// }
-			// }
-			// if(valid) {
-				// Point a = AllPoints.at(p);
-				// Point b = AllPoints.at(q);
-				// cout << a << endl << b << endl << endl;
-				// hullPoints.push_back(AllPoints[p]);
-				// hullPoints.push_back(AllPoints[q]);
-			// }
-		// }
-	// }
-	// cout << "5" << endl;
-	// return hullPoints;
-// }
-
 int main(int argc, char *argv[]) {
 	size_t paramAmount;
 	vector<double> coordinates;
@@ -84,22 +51,22 @@ int main(int argc, char *argv[]) {
 				throw "Parameter n must be positive Integer.";
 			}
 				
-			for(size_t i = 0; i < paramAmount; i++) {
+			for(size_t i = 0; i < paramAmount; i++) { //fall 1: n 2-D punkte werden zufällig erstellt
 				allPoints.push_back(Point{((double) (2*rand()) / (RAND_MAX)) - 1, ((double) (2*rand()) / (RAND_MAX)) - 1});
 			}
 		} else if(argc % 2 == 1) {
-			coordinates.resize(argc - 1);
+			coordinates.resize(argc - 1); //1.argument = aufruf
 			for(size_t i = 1; i < (size_t)argc; i++) {
 				if (!(istringstream(argv[i]) >> dec >> coordinates.at(i - 1))){
-					throw "All Point Coordinates must be of type double. \n Usage: dr [ x1 y1 x2 y2 x3 y3 ]";
+					throw "All Point Coordinates must be of type double. \n Usage: ConvexHull { x1 y1 x2 y2 x3 y3 ... }";
 				} 
 			}
 			
-			for(size_t i = 0; i < coordinates.size(); i += 2) {
+			for(size_t i = 0; i < coordinates.size(); i += 2) { //fall 2: punkte werden übergeben
 				allPoints.push_back(Point{coordinates.at(i), coordinates.at(i + 1)});
 			}
 		} else {
-			throw "Usage: ConvexHull n | { x1 y1 x2 y2 x3 y3 ... }";
+			throw "Number of points has to be even";
 		}
 		PointArray ConvexHull = CalculateHull(allPoints);
 		cout << "Set of " << allPoints.size() << " points is:" << endl;
@@ -115,7 +82,7 @@ int main(int argc, char *argv[]) {
 			cout << "Hull needs at least 2 different points to build." << endl;
 		}
 	} catch (const char *Reason) {
-		cerr << Reason << endl; // Handle Exception
+		cerr << Reason << endl;
 		exit(1);
 	}
 	return 0;

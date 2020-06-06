@@ -13,7 +13,7 @@
 
 using namespace std;
 
-class Point : public vector<double> {
+class Point : public vector<double> { //subklasse von vector
 private:
 	size_t dimension;
 public:
@@ -30,7 +30,7 @@ public:
 		return dimension;
 	}
 	
-	double EuclidDistanceTo(const Point &Other) const {
+	double EuclidDistanceTo(const Point &Other) const { //Abstand = sqrt(a1^2 + a2^2 + ... + an^2)
 		if(dimension != Other.dimension) {
 			throw "Ungleiche Dimension";
 		}

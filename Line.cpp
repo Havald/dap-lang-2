@@ -4,7 +4,7 @@
 #define ACC 1e-9
 #define SGN(x) ((x)< -ACC ? -1 : (x) > ACC ? 1 : 0) // Die Definition SGN gibt das Vorzeichen einer Fließkommazahl mit der Genauigkeit ACC zurück
 
-class Line : private PointArray {
+class Line : private PointArray { //subklasse von PointArray
 public:
 	using PointArray::operator[];
 	using PointArray::at;
@@ -15,16 +15,7 @@ public:
 	double Length() {
 		return ((*this)[0] - (*this)[1]); 
 	}
-	
-	bool ThisfPointLeftOfMe(const Point &To) {
-		Point S0=Point{(*this)[0][0]-To[0],(*this)[0][1]-To[1]};
-		Point S1=Point{(*this)[1][0]-To[0],(*this)[1][1]-To[1]};
-		double ax = S1[0] - S0[0];
-		double ay = S1[1] - S0[1]; 
-		double d = ay*S0[0] - ax*S0[1];
-		return d <= 0.0;
-	}
-	
+
 	int PointLeft(const Point &To) { // Berechnet, ob ein Punkt Links von der gerichteten Linie P1->P2 liegt (ähnlich ThisPointLeftOfMe, dort allerdings links von P2->P1).  
 	
 		double value = ((*this)[0][1] - (*this)[1][1]) * To[0] + 	// Die Berechnung erfolgt über den Umlaufsinn, den das Dreieck aus der Linie und dem Punkt To hat.

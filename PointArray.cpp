@@ -1,7 +1,7 @@
 #pragma once
 #include "Point.cpp"
 
-class PointArray : private vector<Point> {
+class PointArray : private vector<Point> { //subklasse von Point
 public:
 	using vector<Point>::size;
 	using vector<Point>::operator[];
