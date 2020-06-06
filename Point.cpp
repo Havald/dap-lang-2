@@ -13,7 +13,7 @@
 
 using namespace std;
 
-class Point : public vector<double> { //subklasse von vector
+class Point : public vector<double> {
 private:
 	size_t dimension;
 public:
@@ -41,7 +41,7 @@ public:
 		return sqrt(distance);
 	}
 	
-	friend ostream& operator<<(ostream &TheOstream, Point &me) {
+	friend ostream& operator<<(ostream &TheOstream, Point &me) { // Zur Ausgabe auf der Konsole
 		TheOstream << "(";
 		for(size_t i = 0; i < me.getDimension(); i++) {
 			TheOstream << me.at(i); 

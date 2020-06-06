@@ -1,7 +1,7 @@
 #pragma once
 #include "Simplex.cpp"
 
-class Triangle : public Simplex { //subklasse von simplex
+class Triangle : public Simplex { 
 public:
 	Triangle(const Simplex &TheSimplex):Simplex(TheSimplex){
 		if(TheSimplex.size() != 3) { //drei punkte gegeben?

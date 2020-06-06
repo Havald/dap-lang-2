@@ -6,13 +6,13 @@ int main(int argc, char *argv[]) {
 	try{
 		if(argc != 1 && argc != 7) { //korrekte eingabe?
 			throw "Usage: dr [ x1 y1 x2 y2 x3 y3 ]";
-		}else if(argc == 7) { //fall 1: punkte werden übergeben
+		}else if(argc == 7) { //Fall 1: punkte werden übergeben
 			for(size_t i = 1; i < (size_t)argc; i++) {
 				if (!(istringstream(argv[i]) >> dec >> coordinates[i - 1])){
 					throw "All Parameters must be of type double. \n Usage: dr [ x1 y1 x2 y2 x3 y3 ]";
 				} 
 			}
-		} else { //fall 2: punkte werden zufällig erstellt
+		} else { //Fall 2: punkte werden zufällig erstellt
 			srand(time(nullptr));
 			for(size_t i = 0; i < 6; i++) {
 				coordinates[i] = ((double) rand() / (RAND_MAX));
