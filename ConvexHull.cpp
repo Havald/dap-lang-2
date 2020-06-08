@@ -37,7 +37,7 @@ PointArray CalculateHull(const PointArray &AllPoints) {
 }
 
 int main(int argc, char *argv[]) {
-	size_t paramAmount; // Anzahl der zu generierenden Punkte n
+	int paramAmount; // Anzahl der zu generierenden Punkte n
 	vector<double> coordinates; // Speichert Koordinaten, falls sie direkt angegeben werden.
 	PointArray allPoints = PointArray{};
 	srand(time(nullptr));
@@ -50,7 +50,7 @@ int main(int argc, char *argv[]) {
 				throw "Parameter n must be positive Integer.";
 			}
 				
-			for(size_t i = 0; i < paramAmount; i++) { // Fall 1: n 2-D punkte werden zufällig erstellt
+			for(size_t i = 0; i < (size_t)paramAmount; i++) { // Fall 1: n 2-D punkte werden zufällig erstellt
 				allPoints.push_back(Point{((double) (2*rand()) / (RAND_MAX)) - 1, ((double) (2*rand()) / (RAND_MAX)) - 1});
 			}
 		} else if(argc % 2 == 1) {
