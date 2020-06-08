@@ -1,7 +1,7 @@
 #pragma once
 #include "Point.cpp"
 
-class PointArray : private vector<Point> {
+class PointArray : private vector<Point> { 
 public:
 	using vector<Point>::size;
 	using vector<Point>::operator[];
@@ -14,7 +14,7 @@ public:
 	}
 	void push_back(Point p) {
 		if(this->size() > 0) {
-			if(this->at(0).getDimension() != p.getDimension()) {
+			if(this->at(0).getDimension() != p.getDimension()) { // Über Push_back dürfen nachträglich keine Punkte falscher Dimension hinzugefügt werden
 				throw "Cannot add point to Array: wrong dimension";
 			} 
 		}

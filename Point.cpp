@@ -30,7 +30,7 @@ public:
 		return dimension;
 	}
 	
-	double EuclidDistanceTo(const Point &Other) const {
+	double EuclidDistanceTo(const Point &Other) const { //Abstand = sqrt(a1^2 + a2^2 + ... + an^2)
 		if(dimension != Other.dimension) {
 			throw "Ungleiche Dimension";
 		}
@@ -41,7 +41,7 @@ public:
 		return sqrt(distance);
 	}
 	
-	friend ostream& operator<<(ostream &TheOstream, Point &me) {
+	friend ostream& operator<<(ostream &TheOstream, Point &me) { // Zur Ausgabe auf der Konsole
 		TheOstream << "(";
 		for(size_t i = 0; i < me.getDimension(); i++) {
 			TheOstream << me.at(i); 
